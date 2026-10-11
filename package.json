@@ -1,0 +1,46 @@
+{
+  "name": "bb-plugin-token-speed",
+  "version": "0.1.0",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nicolay-i/bb-plugin-token-speed.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nicolay-i/bb-plugin-token-speed/issues"
+  },
+  "engines": {
+    "bb": ">=0.46",
+    "bbPluginSdk": ">=0.6.37"
+  },
+  "bb": {
+    "name": "Token Speed (TPS)",
+    "description": "Estimate visible output tokens per second beside message actions, excluding reasoning, first-chunk waiting, and known tool intervals.",
+    "branding": {
+      "icon": "Zap"
+    },
+    "server": "./server.ts",
+    "app": "./app.tsx",
+    "skills": []
+  },
+  "scripts": {
+    "build": "node build-worker.mjs && bb plugin build",
+    "precheck": "node build-worker.mjs",
+    "check": "tsc --noEmit",
+    "pretest": "node build-worker.mjs",
+    "test": "node --experimental-strip-types --test metrics.test.ts message-ui.test.ts thread-metrics.test.ts tokenizer.test.ts"
+  },
+  "dependencies": {
+    "js-tiktoken": "^1.0.21"
+  },
+  "devDependencies": {
+    "@get-bb/plugin-sdk": "0.6.37",
+    "@types/jsdom": "^30.0.0",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "esbuild": "^0.28.2",
+    "jsdom": "^30.1.2",
+    "typescript": "^5.7.0"
+  }
+}
